@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MsalService } from './msal.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularAzureB2C';
+
+  constructor(
+    private msalService: MsalService
+  ){}
+
+  login(): void {
+      this.msalService.login();
+  }
+  
+  logout(): void {
+      this.msalService.logout();
+      sessionStorage.clear();
+  };
+
+  isOnline(): boolean {
+      return this.msalService.isOnline();
+  };
+  
 }
